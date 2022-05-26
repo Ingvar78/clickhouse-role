@@ -3,3 +3,13 @@
     hosts: clickhouse
     roles:
       - clickhouse
+  - name: Assert lighthouse role
+    hosts: lighthouse
+    roles:
+      - lighthouse-role
+      # - nginx
+  - name: Assert vector role
+    hosts: vector
+    roles:
+      - vector-role
+      # - nginx
