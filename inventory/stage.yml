@@ -1,0 +1,16 @@
+---
+clickhouse:
+  hosts:
+    c8-clickhouse:
+      ansible_host: 192.168.1.41
+      ansible_user: ansible
+vector:
+  hosts:
+    c8-vector:
+      ansible_host: 192.168.1.42
+      ansible_user: ansible
+lighthouse:
+  hosts:
+    c8-lighthouse:
+      ansible_host: 192.168.1.43
+      ansible_user: ansible
