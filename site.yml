@@ -7,9 +7,9 @@
     hosts: lighthouse
     roles:
       - lighthouse-role
-      # - nginx
+      - nginx-role
   - name: Assert vector role
     hosts: vector
     roles:
       - vector-role
-      # - nginx
+      - nginx-role
