@@ -1,15 +1,15 @@
 ---
-  # - name: Assert clickhouse role
-  #   hosts: clickhouse
-  #   roles:
-  #     - clickhouse
-  - name: Assert lighthouse role
-    hosts: lighthouse
-    roles:
-      - nginx-role
-      - lighthouse-role
-  # - name: Assert vector role
-  #   hosts: vector
-  #   roles:
-  #     - nginx-role    
-  #     - vector-role
+- name: Assert clickhouse role
+  hosts: clickhouse
+  roles:
+    - clickhouse
+- name: Assert lighthouse role
+  hosts: lighthouse
+  roles:
+    - nginx-role
+    - lighthouse-role
+- name: Assert vector role
+  hosts: vector
+  roles:
+    - nginx-role
+    - vector-role
