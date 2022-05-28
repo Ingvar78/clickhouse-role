@@ -25,11 +25,11 @@
       register: create_table
       failed_when: create_table.rc != 0 and create_table.rc !=57 # table already exists
       changed_when: create_table.rc == 0
-# - name: Assert lighthouse role
-#   hosts: lighthouse
-#   roles:
-#     - nginx-role
-#     - lighthouse-role
+- name: Assert lighthouse role
+  hosts: lighthouse
+  roles:
+    - nginx-role
+    - lighthouse-role
 - name: Assert vector role
   hosts: vector
   roles:

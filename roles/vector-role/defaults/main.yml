@@ -1,0 +1,27 @@
+---
+# defaults file for vector-role
+vector_version: "0.21.1"
+vector_packages:
+  - vector-server
+nginx_user: nginx
+vector_config:
+  sources:
+    any_logs:
+      type: file
+      include:
+        - /var/log/**/*.log
+      read_from: end
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        - any_logs
+      database: logs
+      endpoint: http://c8-clickhouse:8123
+      table: access_logs
+      compression: gzip
+      healthcheck: false
+      skip_unknown_fields: true
+  api:
+    enabled: true
+    address: '0.0.0.0:8686'

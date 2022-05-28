@@ -1,0 +1,6 @@
+---
+# defaults file for lighthouse-role
+lighthouse_git: https://github.com/VKCOM/lighthouse.git
+lighthouse_home_dir: /opt/lighthouse
+lighthouse_access_log_name: lighthouse_access
+nginx_user: nginx
