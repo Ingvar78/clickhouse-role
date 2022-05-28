@@ -3,13 +3,35 @@
   hosts: clickhouse
   roles:
     - clickhouse
-- name: Assert lighthouse role
-  hosts: lighthouse
-  roles:
-    - nginx-role
-    - lighthouse-role
+  tasks:
+    - name: Clickhouse | Create database
+      ansible.builtin.command:
+        argv:
+          - clickhouse-client
+          - -q
+          - create database {{ clickhouse_database_name }};
+      register: create_db
+      failed_when: create_db.rc != 0 and create_db.rc !=82 # db already exists
+      changed_when: create_db.rc == 0
+    - name: Clickhouse | Create log table
+      tags: clickhouse_db
+      ansible.builtin.command:
+        argv:
+          - clickhouse-client
+          - --database
+          - "{{ clickhouse_database_name }}"
+          - -q
+          - "{{ clickhouse_create_table }}" # - 'CREATE TABLE IF NOT EXISTS  logs.access_logs ( message String ) ENGINE = MergeTree() ORDER BY tuple()'
+      register: create_table
+      failed_when: create_table.rc != 0 and create_table.rc !=57 # table already exists
+      changed_when: create_table.rc == 0
+# - name: Assert lighthouse role
+#   hosts: lighthouse
+#   roles:
+#     - nginx-role
+#     - lighthouse-role
 - name: Assert vector role
   hosts: vector
   roles:
-    - nginx-role
+    # # - nginx-role
     - vector-role

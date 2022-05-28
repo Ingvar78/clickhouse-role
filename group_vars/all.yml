@@ -1,1 +1,8 @@
 nginx_user: nginx
+clickhouse_database_name: logs
+clickhouse_create_table: |
+  CREATE TABLE IF NOT EXISTS  logs.access_logs (
+    message String
+  )
+  ENGINE = MergeTree()
+  ORDER BY tuple()
